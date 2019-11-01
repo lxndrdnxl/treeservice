@@ -15,6 +15,10 @@ spring:
         url: jdbc:postgresql://treeservice-postgres:5432/treeservice
         username: treeservice
         password: treeservice
+        initialization-mode: never
+    jpa:
+        hibernate:
+            ddl-auto: none
 ---
 spring:
     profiles: test
@@ -24,10 +28,11 @@ spring:
         url: ${DB_URL}
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
+        max-active: 5
     jpa:
         hibernate:
             show-sql: true
-            ddl-auto: create-drop
+            ddl-auto: none
 ---
 spring:
     profiles: dev
@@ -35,6 +40,7 @@ spring:
         url: jdbc:postgresql://localhost:5432/treeservice
         username: treeservice
         password: treeservice
+        initialization-mode: never
     jpa:
         hibernate:
             show-sql: true

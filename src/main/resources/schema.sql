@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS nodes CASCADE;
+DROP SEQUENCE IF EXISTS seq_node_id;
 CREATE TABLE nodes (
 id int8 NOT NULL,
 parent_id int8,
