@@ -14,7 +14,8 @@ public class MoveNodeDto {
         this.newParentId = newParentId;
     }
 
-    public MoveNodeDto() {}
+    public MoveNodeDto() {
+    }
 
     public Long getNodeId() {
         return nodeId;

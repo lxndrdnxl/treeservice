@@ -24,9 +24,9 @@ public class NodeController {
 
     /**
      * List all descendants of the given node.
-     *
+     * <p>
      * GET /node/descendants/{nodeId}
-     *
+     * <p>
      * Returns 404 when the given node could not be found.
      *
      * @param nodeId
@@ -43,7 +43,7 @@ public class NodeController {
 
     /**
      * Updates the parent of a node.
-     *
+     * <p>
      * Returns 404 when the given node could not be found and 400 if the new parent is the descendant of the given node.
      *
      * @param moveNodeDto
@@ -72,7 +72,7 @@ public class NodeController {
 
     /**
      * Creates a new node as the child of the given node
-     *
+     * <p>
      * Returns 404 if the given node could not be found.
      *
      * @param addChildDto

@@ -11,7 +11,8 @@ public class AddChildDto {
         this.nodeId = nodeId;
     }
 
-    public AddChildDto() {}
+    public AddChildDto() {
+    }
 
     public Long getNodeId() {
         return nodeId;

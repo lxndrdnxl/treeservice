@@ -10,14 +10,15 @@ import org.testcontainers.containers.PostgreSQLContainer;
 @ActiveProfiles("test")
 class TreeserviceApplicationTests {
 
-	@ClassRule
-	public static PostgreSQLContainer postgreSQLContainer = TestPostgresContainer.getInstance();
-	static {
-		postgreSQLContainer.start();
-	}
+    @ClassRule
+    public static PostgreSQLContainer postgreSQLContainer = TestPostgresContainer.getInstance();
 
-	@Test
-	void contextLoads() {
-	}
+    static {
+        postgreSQLContainer.start();
+    }
+
+    @Test
+    void contextLoads() {
+    }
 
 }
