@@ -6,7 +6,7 @@ public class MoveNodeDto {
 
     @NotNull
     private Long nodeId;
-
+    @NotNull
     private Long newParentId;
 
     public MoveNodeDto(Long nodeId, Long newParentId) {
