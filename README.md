@@ -19,7 +19,10 @@ docker-compose up
 ```
 to create and start the containers running the treeservice and it's postgresql database as well as a container running tests.
 
-When the containers are running the treeservice is accessible via localhost:8080/.
+When the containers are running the treeservice is accessible via localhost:8080/ e.g.
+```
+localhost:8080/node/createTree
+```
 ### Preequisites
 A running docker instance on the server is everything needed to run this application.
 ## Required APIs
