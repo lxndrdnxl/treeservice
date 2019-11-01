@@ -1,33 +1,44 @@
 version: "3"
 services:
+  tests:
+    image: maven:3.6-jdk-8
+    stop_signal: SIGKILL
+    working_dir: /usr
+    volumes:
+      - ./src:/usr/src
+      - ./pom.xml:/usr/pom.xml
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: mvn test
   postgres:
-    container_name: challenge_postgres
+    container_name: treeservice-postgres
     image: postgres:alpine
     volumes:
-      - challenge_pg:/var/lib/postgresql/data
+      - treeservice-pg:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=secret
     ports:
       - "5432:5432"
     networks:
-      - challenge-network
-      - pgadmin-network
-  pgadmin4:
-    container_name: pgadmin4
-    image: dpage/pgadmin4
-    volumes:
-      - pgadmin4:/var/lib/pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=coding@challenge.org
-      - PGADMIN_DEFAULT_PASSWORD=secret
+      - treeservice-network
+    depends_on:
+      - tests
+  treeservice:
+    container_name: treeservice
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "5050:80"
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - postgres
+      - tests
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
     networks:
-      - pgadmin-network
+      - treeservice-network
 networks:
-  challenge-network:
-    driver: bridge
-  pgadmin-network:
-    driver: bridge
+  treeservice-network:
 volumes:
-  challenge_pg:
-  pgadmin4:
+  treeservice-pg:

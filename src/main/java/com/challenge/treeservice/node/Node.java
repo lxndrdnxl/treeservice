@@ -1,27 +1,28 @@
 package com.challenge.treeservice.node;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
-@Table(name = "node")
+@Table(name = "nodes")
 public class Node {
 
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_node_id")
-    @SequenceGenerator(name = "seq_node_id", sequenceName = "seq_node_id")
-    private int id;
+    private Long id;
 
-    private int parentId;
+    private Long parentId;
 
     @NotNull
-    private int rootId;
+    private Long rootId;
 
     @NotNull
-    private int height;
+    private Long height;
 
-    public Node(int id, int parentId, int rootId, int height) {
+    public Node(Long id, Long parentId, Long rootId, Long height) {
         this.id = id;
         this.parentId = parentId;
         this.rootId = rootId;
@@ -30,31 +31,47 @@ public class Node {
 
     public Node() {}
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public int getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
-    public int getRootId() {
+    public Long getRootId() {
         return rootId;
     }
 
-    public void setRootId(int rootId) {
+    public void setRootId(Long rootId) {
         this.rootId = rootId;
     }
 
-    public int getHeight() {
+    public Long getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(Long height) {
         this.height = height;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return id.equals(node.id) &&
+                Objects.equals(parentId, node.parentId) &&
+                rootId.equals(node.rootId) &&
+                height.equals(node.height);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, parentId, rootId, height);
     }
 }

@@ -1,17 +1,17 @@
-CREATE USER challenger;
-ALTER USER challenger PASSWORD 'secret';
-CREATE DATABASE challenger;
-GRANT ALL PRIVILEGES ON DATABASE challenger TO challenger;
-\connect challenger;
-CREATE TABLE node (
-id int4 NOT NULL,
-parent_id int4,
-root_id int4 NOT NULL,
-height int4 NOT NULL
+CREATE USER treeservice;
+ALTER USER treeservice PASSWORD 'treeservice';
+CREATE DATABASE treeservice;
+GRANT ALL PRIVILEGES ON DATABASE treeservice TO treeservice;
+\connect treeservice;
+CREATE TABLE nodes (
+id int8 NOT NULL,
+parent_id int8,
+root_id int8 NOT NULL,
+height int8 NOT NULL
 );
-ALTER TABLE node ADD CONSTRAINT pk_node PRIMARY KEY (id);
-ALTER TABLE node ADD CONSTRAINT fk_node_parent_id FOREIGN KEY (parent_id) REFERENCES node(id) ON DELETE CASCADE;
-ALTER TABLE node ADD CONSTRAINT fk_node_root_id FOREIGN KEY (root_id) REFERENCES node(id) ON DELETE CASCADE;
-GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE node TO challenger;
+ALTER TABLE nodes ADD CONSTRAINT pk_nodes PRIMARY KEY (id);
+ALTER TABLE nodes ADD CONSTRAINT fk_nodes_parent_id FOREIGN KEY (parent_id) REFERENCES nodes(id) ON DELETE CASCADE;
+CREATE INDEX idx_nodes_root_id_id ON nodes(root_id, id);
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE nodes TO treeservice;
 CREATE SEQUENCE seq_node_id INCREMENT BY 1 START WITH 1 CACHE 1000;
-GRANT ALL PRIVILEGES ON SEQUENCE seq_node_id TO challenger;
+GRANT ALL PRIVILEGES ON SEQUENCE seq_node_id TO treeservice;

@@ -1,0 +1,41 @@
+spring:
+    application:
+        name: treeservice
+    profiles:
+        active: dev
+    jpa:
+        properties:
+            hibernate:
+                jdbc:
+                    batch_size: 50
+---
+spring:
+    profiles: prod
+    datasource:
+        url: jdbc:postgresql://treeservice-postgres:5432/treeservice
+        username: treeservice
+        password: treeservice
+---
+spring:
+    profiles: test
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        initialization-mode: always
+        url: ${DB_URL}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+    jpa:
+        hibernate:
+            show-sql: true
+            ddl-auto: create-drop
+---
+spring:
+    profiles: dev
+    datasource:
+        url: jdbc:postgresql://localhost:5432/treeservice
+        username: treeservice
+        password: treeservice
+    jpa:
+        hibernate:
+            show-sql: true
+            ddl-auto: none
