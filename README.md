@@ -126,7 +126,7 @@ If the transaction was successfull:
 ```
 The Api will return HTTP code 404 if the given node does not exist.
 ## Tests
-
+Unit tests with mocked objects are performed for the service class. For the repository and the controller classes integration tests running the application in the embedded server connecting to PostgreSQL instance inside a docker container are performed.
 ## Built With
 * [Spring Boot] (https://spring.io/projects/spring-boot) - Web and DI framework used
 * [Spring Data JPA] (https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#project) - To use their repositories to connect with the database
