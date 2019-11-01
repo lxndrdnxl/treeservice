@@ -133,6 +133,6 @@ Unit tests with mocked objects are performed for the service class. For the repo
 * [PostgreSQL] (https://www.postgresql.org/) - For persistence
 * [JUnit 5] (https://junit.org/junit5/docs/current/user-guide/) - As a test platform
 * [Mockito] (https://site.mockito.org/) - To ease stubbing inside unit tests
-* [AssertJ] (https://joel-costigliola.github.io/assertj/) - For fluent and thus readable assertions in tests
+* [AssertJ] (https://joel-costigliola.github.io/assertj/) - For fluent assertions in tests
 * [testcontainers] (https://www.testcontainers.org/) - To run a PostgreSQL database for integration tests
 * [Apache Maven] (https://www.testcontainers.org/) - For build and dependency management
